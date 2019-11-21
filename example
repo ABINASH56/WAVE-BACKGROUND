@@ -1,0 +1,79 @@
+import 'package:gradient_app_bar/gradient_app_bar.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:ghost_app/staggered.dart';
+import 'package:wave/wave.dart';
+import 'package:wave/config.dart';
+
+void main() => runApp(BackgroundVideo());
+
+class BackgroundVideo extends StatefulWidget {
+  @override
+  _BackgroundVideoState createState() => _BackgroundVideoState();
+}
+
+class _BackgroundVideoState extends State<BackgroundVideo> {
+
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        bottomNavigationBar: WavePage(),
+        appBar: PreferredSize(
+          preferredSize:Size.fromHeight(150.0) ,
+          child:GradientAppBar(title:Text('ram ram'),
+            gradient:LinearGradient(colors: [Colors.blue, Colors.purple, Colors.red]),),
+        ),
+        body:
+        Stack(
+          children: <Widget>[
+
+             ImageTile()
+          ],
+        ),
+      ),
+    );
+  }
+
+
+
+
+
+
+
+
+  }
+
+  class WavePage extends StatefulWidget {
+    @override
+    _WavePageState createState() => _WavePageState();
+  }
+
+  class _WavePageState extends State<WavePage> {
+    @override
+    Widget build(BuildContext context) {
+      return Container(
+        child: WaveWidget(
+
+          duration: 1,
+          config: CustomConfig(
+            gradients: [
+              [Color(0xFF3A2DB3), Color(0xFF3A2DB1)],
+              [Color(0xFFEC72EE), Color(0xFFFF7D9C)],
+              [Color(0xFFfc00ff), Color(0xFF00dbde)],
+              [Color(0xFF396afc), Color(0xFF2948ff)]
+            ],
+            durations: [35000, 19440, 10800, 6000],
+            heightPercentages: [0.20, 0.23, 0.25, 0.30],
+            blur: MaskFilter.blur(BlurStyle.inner, 5),
+            gradientBegin: Alignment.centerLeft,
+            gradientEnd: Alignment.centerRight,
+          ),
+          waveAmplitude: 1.0,
+          backgroundColor: Colors.white,
+          size: Size(double.infinity, 70.0),
+        ),
+      );
+    }
+  }
